@@ -86,6 +86,7 @@ class Dealership {
         inventory.add(v);
         return v;
     }
+
     void removeVehicle(Vehicle v){
         inventory.remove(v);
     }
@@ -111,9 +112,11 @@ class Dealership {
              156000,
              3000));
 
-        System.out.println(d); //show dealership
+        //SHOW DEALERSHIP
+        System.out.println(d);
 
-        for(Vehicle v : d.getAllVehicles()){
+        //SHOW INVENTORY
+        for(Vehicle v : d.getVehiclesByColor("Silver")){
             System.out.println(v);
         }
     }
