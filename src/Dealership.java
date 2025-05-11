@@ -39,8 +39,15 @@ class Dealership {
     }
 
     public List<Vehicle> getVehiclesByYear(int min, int max){
-        return inventory;
+        ArrayList<Vehicle> matches = new ArrayList<>();
+        for(Vehicle v : inventory){
+            if(v.year >= min && v.year <= max){
+                matches.add(v);
+            }
+        }
+        return matches;
     }
+
     public List<Vehicle> getVehiclesByMileage(int min, int max){
         return inventory;
     }
