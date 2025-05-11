@@ -68,9 +68,16 @@ class Dealership {
         return matches;
     }
 
-    public List<Vehicle> getVehiclesByType(String Type){
-        return inventory;
+    public List<Vehicle> getVehiclesByType(String vehicleType){
+        ArrayList<Vehicle> matches = new ArrayList<>();
+        for(Vehicle v : inventory){
+            if(v.color.equalsIgnoreCase(vehicleType)){
+                matches.add(v);
+            }
+        }
+        return matches;
     }
+
     public List<Vehicle> getAllVehicles(){
         return inventory;
     }
