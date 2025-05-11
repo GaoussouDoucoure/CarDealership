@@ -28,9 +28,16 @@ class Dealership {
         return matches;
     }
 
-    public List<Vehicle> getVehiclesByPriceMakeModel(String make, String model){
-        return inventory;
+    public List<Vehicle> getVehiclesByMakeModel(String make, String model){
+        ArrayList<Vehicle> matches = new ArrayList<>();
+        for(Vehicle v : inventory){
+            if(v.make.equalsIgnoreCase(make) && v.model.equalsIgnoreCase(model)){
+                matches.add(v);
+            }
+        }
+        return matches;
     }
+
     public List<Vehicle> getVehiclesByYear(int min, int max){
         return inventory;
     }
