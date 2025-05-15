@@ -71,7 +71,7 @@ class Dealership {
     public List<Vehicle> getVehiclesByType(String vehicleType){
         ArrayList<Vehicle> matches = new ArrayList<>();
         for(Vehicle v : inventory){
-            if(v.color.equalsIgnoreCase(vehicleType)){
+            if(v.vehicleType.equalsIgnoreCase(vehicleType)){
                 matches.add(v);
             }
         }
@@ -116,8 +116,17 @@ class Dealership {
         System.out.println(d);
 
         //SHOW INVENTORY
-        for(Vehicle v : d.getVehiclesByColor("Silver")){
-            System.out.println(v);
+//        var matches = d.getVehiclesByColor("Silver");
+//        var matches = d.getAllVehicles();
+//        var matches = d.getVehiclesByYear(2000, 2025);
+        var matches = d.getVehiclesByType("Sedan");
+        if (matches.size() == 0) {
+            System.out.println("NO MATCHES");
+        } else {
+            for (Vehicle v : matches){
+                System.out.println(v);
+            }
         }
+
     }
 }

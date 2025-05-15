@@ -22,8 +22,15 @@ class Vehicle {
         this.vin = vin;  // assign value from parameter to property, without this line it will receive arguments but not set them.
     }
     public String toString(){
-        return String.format("VIN: '%d'\nYEAR: '%d'\nMAKE: '%s'\nMODEL: '%s'\nCOLOR: '%s'\n",
-                this.vin, this.year, this.make, this.model, this.color);
+        return String.format("""
+                VIN: '%d'
+                YEAR: '%d'
+                MAKE: '%s'
+                MODEL: '%s'
+                COLOR: '%s'
+                TYPE: '%s'
+                """,
+                this.vin, this.year, this.make, this.model, this.color, this.vehicleType);
     }
 
     public static void main(String[] args) {
