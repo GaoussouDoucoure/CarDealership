@@ -8,6 +8,7 @@ class UserInterface{
     private BufferedReader in;
     private DealershipFileManager manager;
     private ContractList contractList;
+    private ContractFileManager contractManager;
 
     UserInterface() {
         this.init();
@@ -17,7 +18,7 @@ class UserInterface{
         this.in = new BufferedReader(new InputStreamReader(System.in));
         this.manager = new DealershipFileManager();
         this.dealership = this.manager.getDealership();
-//        this.contractManager = new ContractFileManager();
+        this.contractManager = new ContractFileManager();
         this.contractList = new ContractList(); //this.contractManager.getContractList();
     }
 
@@ -83,6 +84,7 @@ class UserInterface{
             return;
         }
         this.dealership.removeVehicle(v);
+        this.manager.saveDealership(this.dealership);
     }
 
     private void processGetByTypeRequest() {
@@ -127,19 +129,46 @@ class UserInterface{
 
     private void processSaleRequest() {
         Date date = new Date();
-        String customerName = getString("Enter Customer Name:");
-        String customerEMail = getString("Enter Customer Email:");
+        String customerName = getString("Enter Customer Name");
+        String customerEMail = getString("Enter Customer EMail");
         int vin = getInt("VIN");
+        Vehicle vehicle = dealership.getVehicleByVIN(vin);
+
+        SalesContract sc = new SalesContract(date, vehicle, customerName, customerEMail);
+
         //DISPLAY CONTRACT
+        System.out.println(sc);
 
         //CONFIRM CONTRACT
-//        SalesContract sc = new SalesContract(
-//
-//        );
-//        this.contractList.addContract(sc);
+        boolean confirm = getString("Continue (yes/no) :").equalsIgnoreCase("yes");
+        if(!confirm){
+            return;
+        }
+        this.contractList.addContract(sc);
+        this.contractManager.save(this.contractList.getList());
     }
     private void processLeaseRequest() {
+        Date date = new Date();
+        String customerName = getString("Enter Customer Name");
+        String customerEMail = getString("Enter Customer EMail");
+        int vin = getInt("VIN");
+        Vehicle vehicle = dealership.getVehicleByVIN(vin);
 
+        LeaseContract sc = new LeaseContract(vehicle, date, customerName, customerEMail);
+
+
+        //DISPLAY CONTRACT
+        System.out.println("TOTAL PRICE: " + sc.getTotalPrice());
+
+        //CONFIRM CONTRACT
+        System.out.println(sc);
+
+        boolean confirm = getString("Continue (yes/no) :").equalsIgnoreCase("yes");
+        if(!confirm){
+            return;
+        }
+        this.contractList.addContract(sc);
+        this.contractManager.save(this.contractList.getList());
     }
     private void processAddVehicleRequest() {
         //TODO Collect all info from user
@@ -162,6 +191,7 @@ class UserInterface{
                 price
         );
         dealership.addVehicle(v);
+        this.manager.saveDealership(this.dealership);
     }
 
     void processGetAllVehiclesRequest(){
