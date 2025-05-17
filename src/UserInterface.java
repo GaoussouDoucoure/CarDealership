@@ -130,11 +130,11 @@ class UserInterface{
     private void processSaleRequest() {
         Date date = new Date();
         String customerName = getString("Enter Customer Name");
-        String customerEMail = getString("Enter Customer EMail");
+        String customerEmail = getString("Enter Customer Email");
         int vin = getInt("VIN");
         Vehicle vehicle = dealership.getVehicleByVIN(vin);
 
-        SalesContract sc = new SalesContract(date, vehicle, customerName, customerEMail);
+        SalesContract sc = new SalesContract(date, vehicle, customerName, customerEmail);
 
         //DISPLAY CONTRACT
         System.out.println(sc);
@@ -150,11 +150,11 @@ class UserInterface{
     private void processLeaseRequest() {
         Date date = new Date();
         String customerName = getString("Enter Customer Name");
-        String customerEMail = getString("Enter Customer EMail");
+        String customerEmail = getString("Enter Customer Email");
         int vin = getInt("VIN");
         Vehicle vehicle = dealership.getVehicleByVIN(vin);
 
-        LeaseContract sc = new LeaseContract(vehicle, date, customerName, customerEMail);
+        LeaseContract sc = new LeaseContract(vehicle, date, customerName, customerEmail);
 
 
         //DISPLAY CONTRACT
