@@ -130,7 +130,7 @@ class UserInterface{
     private void processSaleRequest() {
         Date date = new Date();
         String customerName = getString("Enter Customer Name");
-        String customerEMail = getString("Enter Customer EMail");
+        String customerEMail = getString("Enter Customer Email");
         int vin = getInt("VIN");
         Vehicle vehicle = dealership.getVehicleByVIN(vin);
 
